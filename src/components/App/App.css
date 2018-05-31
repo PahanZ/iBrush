@@ -24,15 +24,6 @@
   padding: 20px 0;
 }
 
-.subtitle, .container {
-  margin: 20px 0;
-}
-.container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 20px;
-  text-align: center;
-}
 
 /* IE8- CSS hack */
 @media \0screen\,screen\9 {
