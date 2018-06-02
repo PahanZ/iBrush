@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import PairsList from '../PairsList/PairsList';
+import API from '../../API';
 import './App.css';
 
 class App extends Component {
@@ -9,37 +9,46 @@ class App extends Component {
     this.state = {
       pairs: [],
       statistics: [],
+      activeList: [],
     };
+    this.showPopup = this.showPopup.bind(this);
+    this.hidePopup = this.hidePopup.bind(this);
   }
   componentDidMount() {
-    axios.get('https://api.exmo.com/v1/ticker/')
-      .then(response => JSON.parse(response.request.response))
+    API()
       .then((res) => {
-        const arr = Object.keys(res).map(el => Object.assign({}, res[el], { pair: el }));
-        const storage = JSON.parse(localStorage.getItem('pairs'));
-        let statistics = [];
-        if (storage === null) {
-          localStorage.setItem('pairs', JSON.stringify(arr));
-          statistics.length = arr.length;
-          statistics.fill('without changes');
-        } else {
-          statistics = arr.map((el, i) => {
-            if (el.buy_price > storage[i].buy_price) {
-              return 'up';
-            } else if (el.buy_price < storage[i].buy_price) {
-              return 'down';
-            }
-            return 'without changes';
-          });
-        }
+        const activeList = [];
+        activeList.length = res.arr.length;
+        activeList.fill('hide');
         this.setState({
-          pairs: arr,
-          statistics,
+          pairs: res.arr,
+          statistics: res.statistics,
+          activeList,
         });
       })
       .catch((error) => {
         console.log(error);
       });
+  }
+  showPopup(el) {
+    this.changeStatusPopup(el, 'show');
+  }
+  hidePopup(el) {
+  //  const arr = [...this.state.activeList];
+  //  arr[el] = 'hide';
+  //  console.log(arr);
+  //  this.setState({
+  //    activeList: [],
+  //  });
+  //  console.log(this.state.activeList);
+    this.changeStatusPopup(el, 'hide');
+  }
+  changeStatusPopup(el, status) {
+    const arr = [...this.state.activeList];
+    arr[el] = status;
+    this.setState({
+      activeList: arr,
+    });
   }
   render() {
     return (
@@ -50,6 +59,9 @@ class App extends Component {
         <PairsList
           pairs={this.state.pairs}
           statistics={this.state.statistics}
+          activeList={this.state.activeList}
+          showPopup={this.showPopup}
+          hidePopup={this.hidePopup}
         />
       </div>
     );
