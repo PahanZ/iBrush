@@ -18,6 +18,7 @@
 
 .App {
   padding: 0px 10%;
+  position: relative;
 }
 
 .App-header, .content {

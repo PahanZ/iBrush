@@ -1,5 +1,5 @@
 .popup {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
@@ -10,14 +10,44 @@
     display: none;
 }
 .show {
-    display: flex;
+    display: grid;
     cursor: auto;
+    grid-template-rows: 1fr 2fr 3fr;
 }
 .close {
     cursor: pointer;
     background-color: transparent;
     outline: none;
     font-size: xx-large;
-    position: absolute;
-    right: 15px;
+    text-align: right;
+    margin-right: 15px;
+}
+.popupHead {
+    width: 90%;
+    display: grid;
+    height: auto;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    margin: auto;
+}
+.popupHead > h2 {
+    font-size: 50px;
+}
+.popupBuyPrice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.statisticPair {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+    margin:  auto;
+    width: 90%;
+}
+.statisticPair > .transactions {
+    grid-column-start: 1
+}
+.statisticPair > .prices {
+    grid-column-start: 2
 }

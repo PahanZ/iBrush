@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PairsList from '../PairsList/PairsList';
+import Popup from '../Popup/Popup';
 import API from '../../API';
 import './App.css';
 
@@ -9,7 +10,11 @@ class App extends Component {
     this.state = {
       pairs: [],
       statistics: [],
-      activeList: [],
+      popupData: {
+        pairData: {},
+        classPopup: 'hide',
+        iconClass: '',
+      },
     };
     this.showPopup = this.showPopup.bind(this);
     this.hidePopup = this.hidePopup.bind(this);
@@ -17,40 +22,35 @@ class App extends Component {
   componentDidMount() {
     API()
       .then((res) => {
-        const activeList = [];
-        activeList.length = res.arr.length;
-        activeList.fill('hide');
         this.setState({
           pairs: res.arr,
           statistics: res.statistics,
-          activeList,
         });
       })
       .catch((error) => {
         console.log(error);
       });
   }
-  showPopup(el) {
-    this.changeStatusPopup(el, 'show');
-  }
-  hidePopup(el) {
-  //  const arr = [...this.state.activeList];
-  //  arr[el] = 'hide';
-  //  console.log(arr);
-  //  this.setState({
-  //    activeList: [],
-  //  });
-  //  console.log(this.state.activeList);
-    this.changeStatusPopup(el, 'hide');
-  }
-  changeStatusPopup(el, status) {
-    const arr = [...this.state.activeList];
-    arr[el] = status;
+  showPopup(popupData, iconClass) {
     this.setState({
-      activeList: arr,
+      popupData: {
+        pairData: popupData,
+        classPopup: 'show',
+        iconClass,
+      },
+    });
+  }
+  hidePopup() {
+    this.setState({
+      popupData: {
+        classPopup: 'hide',
+        iconClass: '',
+        pairData: {},
+      },
     });
   }
   render() {
+    // console.log(this.state.pairs);
     return (
       <div className="App">
         <header className="App-header">
@@ -59,8 +59,10 @@ class App extends Component {
         <PairsList
           pairs={this.state.pairs}
           statistics={this.state.statistics}
-          activeList={this.state.activeList}
           showPopup={this.showPopup}
+        />
+        <Popup
+          popupData={this.state.popupData}
           hidePopup={this.hidePopup}
         />
       </div>

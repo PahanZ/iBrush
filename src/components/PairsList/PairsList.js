@@ -12,12 +12,9 @@ const PairsList = props => (
           <Pair
             index={i}
             key={String(i)}
-            pairHead={el.pair}
-            buyPrice={Number(el.buy_price).toFixed(5)}
+            pairData={el}
             className={props.statistics[i]}
-            activeList={props.activeList[i]}
             showPopup={props.showPopup}
-            hidePopup={props.hidePopup}
           />
         ))
       }
@@ -28,9 +25,7 @@ const PairsList = props => (
 PairsList.propTypes = {
   pairs: PropTypes.arrayOf(PropTypes.object).isRequired,
   statistics: PropTypes.arrayOf(PropTypes.string).isRequired,
-  activeList: PropTypes.arrayOf(PropTypes.string).isRequired,
   showPopup: PropTypes.func.isRequired,
-  hidePopup: PropTypes.func.isRequired,
 };
 
 export default PairsList;
