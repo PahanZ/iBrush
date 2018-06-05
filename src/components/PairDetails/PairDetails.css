@@ -19,10 +19,11 @@
     background-color: transparent;
     outline: none;
     font-size: xx-large;
-    text-align: right;
     margin-right: 15px;
+    width: max-content;
+    justify-self: right;
 }
-.popupHead {
+.popup_head {
     width: 90%;
     display: grid;
     height: auto;
@@ -30,15 +31,15 @@
     align-items: center;
     margin: auto;
 }
-.popupHead > h2 {
+.popup_head > h2 {
     font-size: 50px;
 }
-.popupBuyPrice {
+.popup_buy_price {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.statisticPair {
+.statistic_pair {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 15px;

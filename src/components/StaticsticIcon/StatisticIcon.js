@@ -6,11 +6,15 @@ const up = require('../../assets/up.png');
 const down = require('../../assets/down.png');
 
 const StatisticIcon = props => (
-  <img className="statisticIcon" src={props.className === 'up' ? up : down} alt={props.className} />
+  <img
+    className="statistic_icon"
+    src={props.pairStatus ? up : down}
+    alt={props.pairStatus ? 'up' : 'down'}
+  />
 );
 
 StatisticIcon.propTypes = {
-  className: PropTypes.string.isRequired,
+  pairStatus: PropTypes.bool.isRequired,
 };
 
 export default StatisticIcon;

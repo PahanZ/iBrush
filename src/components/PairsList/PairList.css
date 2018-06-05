@@ -1,11 +1,9 @@
 .content {
   padding: 20px 0;
 }
-
 .subtitle {
   margin: 20px 0;
 }
-
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

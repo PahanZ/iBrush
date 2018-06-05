@@ -1,26 +1,29 @@
 import axios from 'axios';
+import { getTicketsData, setTicketsData } from './caching';
 
-export default () => (
+const getTicker = () => (
   axios.get('https://api.exmo.com/v1/ticker/')
     .then(response => JSON.parse(response.request.response))
     .then((res) => {
       const arr = Object.keys(res).map(el => Object.assign({}, res[el], { pair: el }));
-      const storage = JSON.parse(localStorage.getItem('pairs'));
+      const storage = getTicketsData();
       let statistics = [];
       if (storage === null) {
-        localStorage.setItem('pairs', JSON.stringify(arr));
+        setTicketsData(arr);
         statistics.length = arr.length;
         statistics.fill('without changes');
       } else {
         statistics = arr.map((el, i) => {
-          if (el.buy_price > storage[i].buy_price) {
-            return 'up';
-          } else if (el.buy_price < storage[i].buy_price) {
-            return 'down';
+          if (Number(el.buy_price) > Number(storage[i].buy_price)) {
+            return true;
+          } else if (Number(el.buy_price) < Number(storage[i].buy_price)) {
+            return false;
           }
-          return 'without changes';
+          return null;
         });
       }
       return { arr, statistics };
     })
 );
+
+export default getTicker;

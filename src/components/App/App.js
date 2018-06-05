@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PairsList from '../PairsList/PairsList';
-import Popup from '../Popup/Popup';
-import API from '../../API';
+import PairDetails from '../PairDetails/PairDetails';
+import getTicker from '../../API/getTicker';
 import './App.css';
 
 class App extends Component {
@@ -10,17 +10,17 @@ class App extends Component {
     this.state = {
       pairs: [],
       statistics: [],
-      popupData: {
+      pairDetailsData: {
         pairData: {},
-        classPopup: 'hide',
-        iconClass: '',
+        isOpen: false,
+        pairStatus: null,
       },
     };
-    this.showPopup = this.showPopup.bind(this);
-    this.hidePopup = this.hidePopup.bind(this);
+    this.showPairDetails = this.showPairDetails.bind(this);
+    this.hidePairDetails = this.hidePairDetails.bind(this);
   }
   componentDidMount() {
-    API()
+    getTicker()
       .then((res) => {
         this.setState({
           pairs: res.arr,
@@ -31,26 +31,25 @@ class App extends Component {
         console.log(error);
       });
   }
-  showPopup(popupData, iconClass) {
+  showPairDetails(popupData, pairStatus) {
     this.setState({
-      popupData: {
+      pairDetailsData: {
         pairData: popupData,
-        classPopup: 'show',
-        iconClass,
+        isOpen: true,
+        pairStatus,
       },
     });
   }
-  hidePopup() {
+  hidePairDetails() {
     this.setState({
-      popupData: {
-        classPopup: 'hide',
-        iconClass: '',
+      pairDetailsData: {
+        isOpen: false,
+        pairStatus: null,
         pairData: {},
       },
     });
   }
   render() {
-    // console.log(this.state.pairs);
     return (
       <div className="App">
         <header className="App-header">
@@ -59,11 +58,13 @@ class App extends Component {
         <PairsList
           pairs={this.state.pairs}
           statistics={this.state.statistics}
-          showPopup={this.showPopup}
+          showPairDetails={this.showPairDetails}
         />
-        <Popup
-          popupData={this.state.popupData}
-          hidePopup={this.hidePopup}
+        <PairDetails
+          pairDetailsData={this.state.pairDetailsData}
+          hidePairDetails={() => {
+            this.hidePairDetails();
+          }}
         />
       </div>
     );

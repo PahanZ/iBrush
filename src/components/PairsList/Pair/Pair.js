@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import StatisticIcon from '../StaticsticIcon/StatisticIcon';
+import StatisticIcon from '../../StaticsticIcon/StatisticIcon';
 import './Pair.css';
 
 const Pair = props => (
   <button
     className="pair"
     onClick={() => {
-      props.showPopup(props.pairData, props.className);
+      props.showPairDetails(props.pairData, props.pairStatus);
     }}
   >
-    <h3 className={`pairHead ${props.className}`}>{props.pairData.pair}</h3>
+    <h3 className={`pair_head ${props.pairStatus ? 'up' : 'down'}`}>{props.pairData.pair}</h3>
     <div className="statistic">
-      { props.className !== 'without changes' ?
-        <StatisticIcon className={props.className} /> :
+      { props.pairStatus !== null ?
+        <StatisticIcon pairStatus={!!props.pairStatus} /> :
         null
       }
       <p>{Number(props.pairData.buy_price).toFixed(5)}</p>
@@ -26,8 +26,11 @@ Pair.propTypes = {
     pair: PropTypes.string,
     buy_price: PropTypes.string,
   }).isRequired,
-  className: PropTypes.string.isRequired,
-  showPopup: PropTypes.func.isRequired,
+  pairStatus: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.object,
+  ]).isRequired,
+  showPairDetails: PropTypes.func.isRequired,
 };
 
 export default Pair;

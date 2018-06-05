@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Pair from '../Pair/Pair';
+import Pair from './Pair/Pair';
 import './PairList.css';
 
 const PairsList = props => (
@@ -13,8 +13,8 @@ const PairsList = props => (
             index={i}
             key={String(i)}
             pairData={el}
-            className={props.statistics[i]}
-            showPopup={props.showPopup}
+            pairStatus={props.statistics[i]}
+            showPairDetails={props.showPairDetails}
           />
         ))
       }
@@ -24,8 +24,11 @@ const PairsList = props => (
 
 PairsList.propTypes = {
   pairs: PropTypes.arrayOf(PropTypes.object).isRequired,
-  statistics: PropTypes.arrayOf(PropTypes.string).isRequired,
-  showPopup: PropTypes.func.isRequired,
+  statistics: PropTypes.arrayOf(PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.object,
+  ])).isRequired,
+  showPairDetails: PropTypes.func.isRequired,
 };
 
 export default PairsList;
