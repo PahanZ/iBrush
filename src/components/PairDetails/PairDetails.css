@@ -46,9 +46,9 @@
     margin:  auto;
     width: 90%;
 }
-.statisticPair > .transactions {
+.statistic_pair > .transactions {
     grid-column-start: 1
 }
-.statisticPair > .prices {
+.statistic_pair > .prices {
     grid-column-start: 2
 }

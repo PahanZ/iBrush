@@ -14,12 +14,9 @@ const getTicker = () => (
         statistics.fill('without changes');
       } else {
         statistics = arr.map((el, i) => {
-          if (Number(el.buy_price) > Number(storage[i].buy_price)) {
-            return true;
-          } else if (Number(el.buy_price) < Number(storage[i].buy_price)) {
-            return false;
-          }
-          return null;
+          const buyPrice = Number(el.buy_price);
+          const storageBuyPrice = Number(storage[i].buy_price);
+          return buyPrice !== storageBuyPrice ? buyPrice > storageBuyPrice : 0;
         });
       }
       return { arr, statistics };

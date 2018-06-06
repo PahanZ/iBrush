@@ -3,7 +3,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 #root {
   background-color: #d59285;
   /* IE9, iOS 3.2+ */
@@ -15,17 +14,17 @@
   background-image: repeating-linear-gradient(135deg,rgb(254, 212, 150) 0%,rgb(172, 79, 115) 100%);
   background-image: -ms-repeating-linear-gradient(315deg,rgb(254, 212, 150) 0%,rgb(172, 79, 115) 100%);
 }
-
 .App {
   padding: 0px 10%;
   position: relative;
 }
-
+.popup_open {
+  height: 100vh;
+  overflow: hidden;
+}
 .App-header, .content {
   padding: 20px 0;
 }
-
-
 /* IE8- CSS hack */
 @media \0screen\,screen\9 {
   .App {

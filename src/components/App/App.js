@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PairsList from '../PairsList/PairsList';
 import PairDetails from '../PairDetails/PairDetails';
 import getTicker from '../../API/getTicker';
+import getOrderBook from '../../API/getOrderBook';
 import './App.css';
 
 class App extends Component {
@@ -13,7 +14,9 @@ class App extends Component {
       pairDetailsData: {
         pairData: {},
         isOpen: false,
-        pairStatus: null,
+        pairStatus: 0,
+        sale: [],
+        buy: [],
       },
     };
     this.showPairDetails = this.showPairDetails.bind(this);
@@ -32,26 +35,37 @@ class App extends Component {
       });
   }
   showPairDetails(popupData, pairStatus) {
-    this.setState({
-      pairDetailsData: {
-        pairData: popupData,
-        isOpen: true,
-        pairStatus,
-      },
-    });
+    getOrderBook(popupData.pair)
+      .then((res) => {
+        this.setState({
+          pairDetailsData: {
+            pairData: popupData,
+            isOpen: true,
+            pairStatus,
+            sale: res.ask,
+            buy: res.bid,
+          },
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   hidePairDetails() {
     this.setState({
       pairDetailsData: {
         isOpen: false,
-        pairStatus: null,
+        pairStatus: 0,
         pairData: {},
+        sale: [],
+        buy: [],
       },
     });
   }
   render() {
+    const { isOpen } = this.state.pairDetailsData;
     return (
-      <div className="App">
+      <div className={`App ${isOpen ? 'popup_open' : null}`}>
         <header className="App-header">
           <h1>Сам себе трэйдер</h1>
         </header>

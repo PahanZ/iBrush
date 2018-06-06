@@ -10,10 +10,14 @@ const Pair = props => (
       props.showPairDetails(props.pairData, props.pairStatus);
     }}
   >
-    <h3 className={`pair_head ${props.pairStatus ? 'up' : 'down'}`}>{props.pairData.pair}</h3>
+    <h3 className={`pair_head ${props.pairStatus !== 0 ?
+      `${props.pairStatus ? 'up' : 'down'}` : ''}`}
+    >
+      {props.pairData.pair}
+    </h3>
     <div className="statistic">
-      { props.pairStatus !== null ?
-        <StatisticIcon pairStatus={!!props.pairStatus} /> :
+      { props.pairStatus !== 0 ?
+        <StatisticIcon pairStatus={props.pairStatus ? props.pairStatus : false} /> :
         null
       }
       <p>{Number(props.pairData.buy_price).toFixed(5)}</p>
@@ -28,7 +32,7 @@ Pair.propTypes = {
   }).isRequired,
   pairStatus: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.object,
+    PropTypes.number,
   ]).isRequired,
   showPairDetails: PropTypes.func.isRequired,
 };

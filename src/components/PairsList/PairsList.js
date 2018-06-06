@@ -26,7 +26,7 @@ PairsList.propTypes = {
   pairs: PropTypes.arrayOf(PropTypes.object).isRequired,
   statistics: PropTypes.arrayOf(PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.object,
+    PropTypes.number,
   ])).isRequired,
   showPairDetails: PropTypes.func.isRequired,
 };
