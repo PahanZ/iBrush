@@ -4,3 +4,39 @@
     width: 90%;
     margin: auto;
 }
+.table_container {
+    display: flex;
+    justify-content: space-evenly;
+}
+.table_orders {
+    border-collapse: collapse;    
+}
+.table_orders >.thead > tr {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+.tbody {
+    display: block;
+    height: 35vh;
+    overflow-y: auto;
+}
+.tbody::-webkit-scrollbar {
+    background-color: #cee694;
+    width: 4px;
+}
+.tbody::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+	box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #02f9ce;
+}
+.table_orders > .tbody > tr {
+    text-align: center;
+}
+.table_orders >.tbody > tr > td {
+    padding: 0 10px;
+}
+.bordered {
+    border-left: 1px solid black;
+    border-right: 1px solid black
+}

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PairsList from '../PairsList/PairsList';
 import PairDetails from '../PairDetails/PairDetails';
-import getTicker from '../../API/getTicker';
-import getOrderBook from '../../API/getOrderBook';
+import getTicker from '../../API/ticker';
+import getOrderBook from '../../API/orderBook';
 import './App.css';
 
 class App extends Component {
@@ -23,7 +23,7 @@ class App extends Component {
     this.hidePairDetails = this.hidePairDetails.bind(this);
   }
   componentDidMount() {
-    getTicker()
+    getTicker.getTicker()
       .then((res) => {
         this.setState({
           pairs: res.arr,
@@ -35,7 +35,7 @@ class App extends Component {
       });
   }
   showPairDetails(popupData, pairStatus) {
-    getOrderBook(popupData.pair)
+    getOrderBook.getOrderBook(popupData.pair)
       .then((res) => {
         this.setState({
           pairDetailsData: {

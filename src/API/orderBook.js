@@ -11,4 +11,4 @@ const getOrderBook = pair => (
     })
 );
 
-export default getOrderBook;
+export default { getOrderBook };

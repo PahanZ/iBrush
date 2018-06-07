@@ -23,4 +23,4 @@ const getTicker = () => (
     })
 );
 
-export default getTicker;
+export default { getTicker };

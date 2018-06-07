@@ -5,8 +5,14 @@ import './Orders.css';
 
 const Orders = props => (
   <section className="orders">
-    <TableOrders orders={props.buy} />
-    <TableOrders orders={props.sale} />
+    <TableOrders
+      title="Покупка"
+      orders={props.buy}
+    />
+    <TableOrders
+      title="Продажа"
+      orders={props.sale}
+    />
   </section>
 );
 
