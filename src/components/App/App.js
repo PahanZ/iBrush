@@ -65,7 +65,7 @@ class App extends Component {
   render() {
     const { isOpen } = this.state.pairDetailsData;
     return (
-      <div className={`App ${isOpen ? 'popup_open' : null}`}>
+      <div className={`App ${isOpen ? 'popup_open' : 'popup_hide'}`}>
         <header className="App-header">
           <h1>Сам себе трэйдер</h1>
         </header>

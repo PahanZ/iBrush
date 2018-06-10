@@ -17,6 +17,7 @@
 .App {
   padding: 0px 10%;
   position: relative;
+  transition: .5s;
 }
 .popup_open {
   height: 100vh;

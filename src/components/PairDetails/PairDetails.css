@@ -4,7 +4,12 @@
     bottom: 0;
     left: 0;
     right: 0;
+    display: grid;
+    cursor: auto;
+    grid-template-rows: 1fr 2fr 50%;
     background-color: #7adba8;
+    opacity: 0;
+    transition: .5s;
     /* IE9, iOS 3.2+ */
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNjZGZlOTYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iIzI2YjhiOSIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjEiLz48L2xpbmVhckdyYWRpZW50PjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjdnNnZykiIC8+PC9zdmc+);
     background-image: -webkit-gradient(linear, 0% 0%, 100% 100%,color-stop(0, rgb(205, 254, 150)),color-stop(1, rgb(38, 184, 185)));
@@ -16,12 +21,11 @@
 }
 
 .hide {
-    display: none;
+    z-index: -1;
 }
 .show {
-    display: grid;
-    cursor: auto;
-    grid-template-rows: 1fr 2fr 50%;
+    opacity: 1;
+    z-index: 1;
 }
 .close {
     cursor: pointer;
