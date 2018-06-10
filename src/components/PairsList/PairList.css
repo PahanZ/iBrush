@@ -10,4 +10,11 @@
   grid-gap: 20px;
   text-align: center;
   margin: 20px 0;
+  transition: .5s;
+}
+.container_empty {
+  opacity: 0;
+}
+.container_full {
+  opacity: 1;
 }

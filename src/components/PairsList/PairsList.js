@@ -6,7 +6,9 @@ import './PairList.css';
 const PairsList = props => (
   <main className="content">
     <h3 className="subtitle">Валютные пары</h3>
-    <section className="container">
+    <section className={`container ${props.pairs.length === 0
+      ? 'container_empty' : 'container_full'}`}
+    >
       {
         props.pairs.map((el, i) => (
           <Pair

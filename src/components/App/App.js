@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PairsList from '../PairsList/PairsList';
 import PairDetails from '../PairDetails/PairDetails';
 import getTicker from '../../API/ticker';
 import getOrderBook from '../../API/orderBook';
+import Preloader from '../Preloader/Preloader';
 import './App.css';
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
         sale: [],
         buy: [],
       },
+      preloaderIsActive: true,
     };
     this.showPairDetails = this.showPairDetails.bind(this);
     this.hidePairDetails = this.hidePairDetails.bind(this);
@@ -28,6 +30,7 @@ class App extends Component {
         this.setState({
           pairs: res.arr,
           statistics: res.statistics,
+          preloaderIsActive: false,
         });
       })
       .catch((error) => {
@@ -35,6 +38,9 @@ class App extends Component {
       });
   }
   showPairDetails(popupData, pairStatus) {
+    this.setState({
+      preloaderIsActive: true,
+    });
     getOrderBook.getOrderBook(popupData.pair)
       .then((res) => {
         this.setState({
@@ -45,6 +51,7 @@ class App extends Component {
             sale: res.ask,
             buy: res.bid,
           },
+          preloaderIsActive: false,
         });
       })
       .catch((error) => {
@@ -65,22 +72,25 @@ class App extends Component {
   render() {
     const { isOpen } = this.state.pairDetailsData;
     return (
-      <div className={`App ${isOpen ? 'popup_open' : 'popup_hide'}`}>
-        <header className="App-header">
-          <h1>Сам себе трэйдер</h1>
-        </header>
-        <PairsList
-          pairs={this.state.pairs}
-          statistics={this.state.statistics}
-          showPairDetails={this.showPairDetails}
-        />
-        <PairDetails
-          pairDetailsData={this.state.pairDetailsData}
-          hidePairDetails={() => {
-            this.hidePairDetails();
-          }}
-        />
-      </div>
+      <Fragment>
+        <Preloader preloaderIsActive={this.state.preloaderIsActive} />
+        <div className={`App ${isOpen ? 'popup_open' : 'popup_hide'}`}>
+          <header className="App-header">
+            <h1>Сам себе трэйдер</h1>
+          </header>
+          <PairsList
+            pairs={this.state.pairs}
+            statistics={this.state.statistics}
+            showPairDetails={this.showPairDetails}
+          />
+          <PairDetails
+            pairDetailsData={this.state.pairDetailsData}
+            hidePairDetails={() => {
+              this.hidePairDetails();
+            }}
+          />
+        </div>
+      </Fragment>
     );
   }
 }
