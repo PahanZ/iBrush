@@ -35,14 +35,16 @@
     margin-right: 15px;
     width: max-content;
     justify-self: right;
+    position: absolute;
 }
 .popup_head {
-    width: 90%;
+    width: 80%;
     display: grid;
     height: auto;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
     align-items: center;
     margin: auto;
+    grid-gap: 20px;
 }
 .popup_head > h2 {
     font-size: 50px;
@@ -50,20 +52,17 @@
 .popup_buy_price {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 .statistic_pair {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
     grid-gap: 15px;
     margin:  auto;
-    width: 90%;
+    width: 80%;
 }
 .statistic_pair > .transactions {
     grid-column-start: 1
-}
-.statistic_pair > .prices {
-    grid-column-start: 2
 }
 /* IE8- CSS hack */
 @media \0screen\,screen\9 {

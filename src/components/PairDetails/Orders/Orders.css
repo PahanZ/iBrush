@@ -1,15 +1,19 @@
 .orders {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-    width: 90%;
+    grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+    width: 80%;
     margin: auto;
+    height: 100%;
 }
 .table_container {
     display: flex;
     justify-content: space-evenly;
+    height: 80%;
+    flex-wrap: wrap;
 }
 .table_orders {
-    border-collapse: collapse;    
+    border-collapse: collapse; 
+    height: 100%;   
 }
 .table_orders >.thead > tr {
     display: flex;
@@ -18,7 +22,7 @@
 }
 .tbody {
     display: block;
-    height: 35vh;
+    height: 100%;
     overflow-y: auto;
 }
 .tbody::-webkit-scrollbar {
@@ -39,4 +43,10 @@
 .bordered {
     border-left: 1px solid black;
     border-right: 1px solid black
+}
+
+@media (max-width: 400px) {
+    .orders {
+        grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    }
 }
