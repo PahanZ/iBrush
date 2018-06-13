@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TableOrders from './TableOrders';
+import TableOrders from '../TableOrders/TableOrders';
 import './Orders.css';
 
-const Orders = props => (
+const Orders = ({ buy, sale }) => (
   <section className="orders">
     <TableOrders
       title="Покупка"
-      orders={props.buy}
+      orders={buy}
     />
     <TableOrders
       title="Продажа"
-      orders={props.sale}
+      orders={sale}
     />
   </section>
 );

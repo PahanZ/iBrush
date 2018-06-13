@@ -5,11 +5,11 @@ import './StatisticIcon.css';
 const up = require('../../assets/up.png');
 const down = require('../../assets/down.png');
 
-const StatisticIcon = props => (
+const StatisticIcon = ({ pairStatus }) => (
   <img
     className="statistic_icon"
-    src={props.pairStatus ? up : down}
-    alt={props.pairStatus ? 'up' : 'down'}
+    src={pairStatus ? up : down}
+    alt={pairStatus ? 'up' : 'down'}
   />
 );
 

@@ -1,0 +1,7 @@
+.orders {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+    width: 80%;
+    margin: auto;
+    height: 100%;
+}

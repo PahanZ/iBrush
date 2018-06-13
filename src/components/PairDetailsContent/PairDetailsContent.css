@@ -1,0 +1,10 @@
+.statistic_pair {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+    grid-gap: 15px;
+    margin:  auto;
+    width: 80%;
+}
+.statistic_pair > .transactions {
+    grid-column-start: 1
+}

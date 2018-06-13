@@ -1,22 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Pair from './Pair/Pair';
+import Pair from '../Pair/Pair';
 import './PairList.css';
 
-const PairsList = props => (
+const PairsList = ({ pairs, statistics, showPairDetails }) => (
   <main className="content">
     <h3 className="subtitle">Валютные пары</h3>
-    <section className={`container ${props.pairs.length === 0
+    <section className={`container ${pairs.length === 0
       ? 'container_empty' : 'container_full'}`}
     >
       {
-        props.pairs.map((el, i) => (
+        pairs.map((el, i) => (
           <Pair
             index={i}
             key={String(i)}
             pairData={el}
-            pairStatus={props.statistics[i]}
-            showPairDetails={props.showPairDetails}
+            pairStatus={statistics[i]}
+            showPairDetails={showPairDetails}
           />
         ))
       }

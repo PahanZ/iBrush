@@ -1,26 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import StatisticIcon from '../../StaticsticIcon/StatisticIcon';
+import StatisticIcon from '../StaticsticIcon/StatisticIcon';
 import './Pair.css';
 
-const Pair = props => (
+const Pair = ({ pairStatus, pairData, showPairDetails }) => (
   <button
     className="pair"
     onClick={() => {
-      props.showPairDetails(props.pairData, props.pairStatus);
+      showPairDetails(pairData, pairStatus);
     }}
   >
-    <h3 className={`pair_head ${props.pairStatus !== 0 ?
-      `${props.pairStatus ? 'up' : 'down'}` : ''}`}
+    <h3 className={`pair_head ${pairStatus !== 0 ?
+      `${pairStatus ? 'up' : 'down'}` : ''}`}
     >
-      {props.pairData.pair}
+      {pairData.pair}
     </h3>
     <div className="statistic">
-      { props.pairStatus !== 0 ?
-        <StatisticIcon pairStatus={props.pairStatus ? props.pairStatus : false} /> :
+      { pairStatus !== 0 ?
+        <StatisticIcon pairStatus={pairStatus || false} /> :
         null
       }
-      <p>{Number(props.pairData.buy_price).toFixed(5)}</p>
+      <p>{Number(pairData.buy_price).toFixed(5)}</p>
     </div>
   </button>
 );

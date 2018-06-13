@@ -1,0 +1,29 @@
+.close {
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    font-size: xx-large;
+    margin-right: 15px;
+    width: max-content;
+    justify-self: right;
+    position: absolute;
+    outline: none;
+    border: none;
+}
+.popup_head {
+    width: 80%;
+    display: grid;
+    height: auto;
+    grid-template-columns: repeat(auto-fit, minmax(225px, 275px));
+    align-items: center;
+    margin: auto;
+    grid-gap: 20px;
+}
+.popup_head > h2 {
+    font-size: 50px;
+}
+.popup_buy_price {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}

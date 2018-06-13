@@ -1,21 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PairDetailsHead from './PairDetailsHead';
-import PairDetailsContent from './PairDetailsContent';
-import Orders from './Orders/Orders';
+import PairDetailsHead from '../PairDetailsHead/PairDetailsHead';
+import PairDetailsContent from '../PairDetailsContent/PairDetailsContent';
+import Orders from '../Orders/Orders';
 import './PairDetails.css';
 
-const PairDetails = (props) => {
+const PairDetails = ({ pairDetailsData, hidePairDetails }) => {
   const {
     avg, buy_price: buyPrice, high, low, pair, vol_curr: volCurr, vol,
-  } = props.pairDetailsData.pairData;
+  } = pairDetailsData.pairData;
+  const {
+    isOpen, pairStatus, sale, buy,
+  } = pairDetailsData;
   return (
-    <section className={`popup ${props.pairDetailsData.isOpen ? 'show' : 'hide'}`}>
+    <section className={`popup ${isOpen ? 'show' : 'hide'}`}>
       <PairDetailsHead
         buyPrice={buyPrice || ''}
         pair={pair || ''}
-        pairStatus={props.pairDetailsData.pairStatus}
-        hidePairDetails={props.hidePairDetails}
+        pairStatus={pairStatus}
+        hidePairDetails={hidePairDetails}
       />
       <PairDetailsContent
         vol={vol || ''}
@@ -25,8 +28,8 @@ const PairDetails = (props) => {
         low={low || ''}
       />
       <Orders
-        sale={props.pairDetailsData.sale}
-        buy={props.pairDetailsData.buy}
+        sale={sale}
+        buy={buy}
       />
     </section>
   );

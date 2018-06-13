@@ -23,9 +23,6 @@ body {
   height: 100vh;
   overflow: hidden;
 }
-.App-header, .content {
-  padding: 20px 0;
-}
 /* IE8- CSS hack */
 @media \0screen\,screen\9 {
   body {

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import Header from '../Header/Header';
 import PairsList from '../PairsList/PairsList';
 import PairDetails from '../PairDetails/PairDetails';
 import getTicker from '../../API/ticker';
@@ -75,9 +76,7 @@ class App extends Component {
       <Fragment>
         <Preloader preloaderIsActive={this.state.preloaderIsActive} />
         <div className={`App ${isOpen ? 'popup_open' : 'popup_hide'}`}>
-          <header className="App-header">
-            <h1>Сам себе трэйдер</h1>
-          </header>
+          <Header />
           <PairsList
             pairs={this.state.pairs}
             statistics={this.state.statistics}
@@ -85,9 +84,7 @@ class App extends Component {
           />
           <PairDetails
             pairDetailsData={this.state.pairDetailsData}
-            hidePairDetails={() => {
-              this.hidePairDetails();
-            }}
+            hidePairDetails={this.hidePairDetails}
           />
         </div>
       </Fragment>

@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './TableOrders.css';
 
-const TableOrders = props => (
+const TableOrders = ({ title, orders }) => (
   <div className="table_container">
-    <h3 className="table_caption">{props.title}</h3>
+    <h3 className="table_caption">{title}</h3>
     <table cellSpacing="5" className="table_orders">
       <thead className="thead">
         <tr>
@@ -13,7 +14,7 @@ const TableOrders = props => (
         </tr>
       </thead>
       <tbody className="tbody">
-        {props.orders.map((el, i) => (
+        {orders.map((el, i) => (
           <tr key={String(i)}>
             <td>{el[0]}</td>
             <td className="bordered">{el[1]}</td>

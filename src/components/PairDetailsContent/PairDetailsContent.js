@@ -1,17 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './PairDetailsContent.css';
 
-const PairDetailsContent = props => (
+const PairDetailsContent = ({
+  vol, volCurr, avg, high, low,
+}) => (
   <div className="statistic_pair">
     <h4>Статиcтика за 24 часа</h4>
     <div className="transactions">
-      <p>Объем торгов: {props.vol}</p>
-      <p>Сумма сделок: {props.volCurr}</p>
+      <p>Объем торгов: {vol}</p>
+      <p>Сумма сделок: {volCurr}</p>
     </div>
     <div className="prices">
-      <p>Средняя цена сделки: {props.avg}</p>
-      <p>Максимальная цена сделки: {props.high}</p>
-      <p>Минималльная цена сделки: {props.low}</p>
+      <p>Средняя цена сделки: {avg}</p>
+      <p>Максимальная цена сделки: {high}</p>
+      <p>Минималльная цена сделки: {low}</p>
     </div>
   </div>
 );

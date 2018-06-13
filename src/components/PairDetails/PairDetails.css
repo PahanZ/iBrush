@@ -27,45 +27,8 @@
     opacity: 1;
     z-index: 1;
 }
-.close {
-    cursor: pointer;
-    background-color: transparent;
-    outline: none;
-    font-size: xx-large;
-    margin-right: 15px;
-    width: max-content;
-    justify-self: right;
-    position: absolute;
-}
-.popup_head {
-    width: 80%;
-    display: grid;
-    height: auto;
-    grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
-    align-items: center;
-    margin: auto;
-    grid-gap: 20px;
-}
-.popup_head > h2 {
-    font-size: 50px;
-}
-.popup_buy_price {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-.statistic_pair {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
-    grid-gap: 15px;
-    margin:  auto;
-    width: 80%;
-}
-.statistic_pair > .transactions {
-    grid-column-start: 1
-}
 /* IE8- CSS hack */
 @media \0screen\,screen\9 {
-.gradient {
+.popup {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffcdfe96",endColorstr="#ff26b8b9",GradientType=0);
 }}

@@ -1,26 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import StatisticIcon from '../StaticsticIcon/StatisticIcon';
+import './PairDetailsHead.css';
 
-const PairDetailsHead = props => (
+const PairDetailsHead = ({
+  pair, pairStatus, buyPrice, hidePairDetails,
+}) => (
   <div className="popup_head">
-    <h2>{props.pair}</h2>
+    <h2>{pair}</h2>
     <div className="popup_buy_price">
-      {props.pairStatus !== 0 ?
-        <StatisticIcon pairStatus={props.pairStatus ? props.pairStatus : false} /> :
-        null
+      {pairStatus !== 0 ?
+        <StatisticIcon pairStatus={pairStatus} /> : null
       }
-      <h3>{props.buyPrice}</h3>
+      <h3>{buyPrice}</h3>
     </div>
-    {/* eslint-disable */}
-        <div
-            className="close"
-            onClick={() => {
-                props.hidePairDetails();
-            }}
-        >&times;
-        </div>
-        {/* eslint-enable */}
+    <button
+      className="close"
+      onClick={hidePairDetails}
+    >&times;
+    </button>
   </div>
 );
 
