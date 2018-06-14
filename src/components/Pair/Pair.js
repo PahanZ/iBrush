@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import StatisticIcon from '../StaticsticIcon/StatisticIcon';
 import './Pair.css';
 
-const Pair = ({ pairStatus, pairData, showPairDetails }) => (
+const Pair = ({
+  pairStatus, pairData, showPairDetails, index,
+}) => (
   <button
     className="pair"
     onClick={() => {
-      showPairDetails(pairData, pairStatus);
+      showPairDetails(index);
     }}
   >
     <h3 className={`pair_head ${pairStatus !== 0 ?
@@ -34,6 +36,7 @@ Pair.propTypes = {
     PropTypes.bool,
     PropTypes.number,
   ]).isRequired,
+  index: PropTypes.number.isRequired,
   showPairDetails: PropTypes.func.isRequired,
 };
 

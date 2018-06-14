@@ -26,11 +26,9 @@ class App extends Component {
     this.hidePairDetails = this.hidePairDetails.bind(this);
   }
   componentDidMount() {
-    getTicker.getTicker()
-      .then((res) => {
+    this.getTickers()
+      .then(() => {
         this.setState({
-          pairs: res.arr,
-          statistics: res.statistics,
           preloaderIsActive: false,
         });
       })
@@ -38,22 +36,36 @@ class App extends Component {
         console.log(error);
       });
   }
-  showPairDetails(popupData, pairStatus) {
+  getTickers() {
+    return getTicker.getTicker()
+      .then((res) => {
+        this.setState({
+          pairs: res.arr,
+          statistics: res.statistics,
+        });
+      });
+  }
+  showPairDetails(index) {
     this.setState({
       preloaderIsActive: true,
     });
-    getOrderBook.getOrderBook(popupData.pair)
-      .then((res) => {
-        this.setState({
-          pairDetailsData: {
-            pairData: popupData,
-            isOpen: true,
-            pairStatus,
-            sale: res.ask,
-            buy: res.bid,
-          },
-          preloaderIsActive: false,
-        });
+    this.getTickers()
+      .then(() => {
+        const pairData = this.state.pairs[index];
+        const status = this.state.statistics[index];
+        getOrderBook.getOrderBook(pairData.pair)
+          .then((res) => {
+            this.setState({
+              pairDetailsData: {
+                pairData,
+                isOpen: true,
+                pairStatus: status,
+                sale: res.ask,
+                buy: res.bid,
+              },
+              preloaderIsActive: false,
+            });
+          });
       })
       .catch((error) => {
         console.log(error);

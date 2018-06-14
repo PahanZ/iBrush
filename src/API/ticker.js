@@ -11,7 +11,7 @@ const getTicker = () => (
       if (storage === null) {
         setTicketsData(arr);
         statistics.length = arr.length;
-        statistics.fill('without changes');
+        statistics.fill(0);
       } else {
         statistics = arr.map((el, i) => {
           const buyPrice = Number(el.buy_price);
