@@ -10,15 +10,11 @@ import Preloader from '../Preloader/Preloader';
 import './App.css';
 
 type AppState = {
-  pairs: Array<{
-    avg: number
-  }>,
+  pairs: Array<Object>,
   preloaderIsActive: bool,
   statistics: Array<bool>,
   pairDetailsData: {
-    pairData: {
-      pair: string
-    },
+    pairData: Object,
     isOpen: bool,
     pairStatus: bool | number,
     sale: Array<number>,

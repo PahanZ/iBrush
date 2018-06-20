@@ -1,8 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import * as React from 'react';
+// import PropTypes from 'prop-types';
 import './Preloader.css';
 
-const Preloader = ({ preloaderIsActive }) => (
+type PreloaderProps = {
+  preloaderIsActive: bool
+}
+
+const Preloader = ({ preloaderIsActive }: PreloaderProps) => (
   <div className={`preloader ${preloaderIsActive ? 'preloader_show' : 'preloader_hide'}`}>
     <div className="dash uno" />
     <div className="dash dos" />
@@ -11,8 +17,8 @@ const Preloader = ({ preloaderIsActive }) => (
   </div>
 );
 
-Preloader.propTypes = {
-  preloaderIsActive: PropTypes.bool.isRequired,
-};
+// Preloader.propTypes = {
+//   preloaderIsActive: PropTypes.bool.isRequired,
+// };
 
 export default Preloader;
