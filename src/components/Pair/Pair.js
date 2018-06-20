@@ -1,11 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import * as React from 'react';
+// import PropTypes from 'prop-types';
 import StatisticIcon from '../StaticsticIcon/StatisticIcon';
 import './Pair.css';
 
+type PairProps = {
+  pairStatus: bool,
+  pairData: Object,
+  showPairDetails: Function,
+  index: number
+}
+
 const Pair = ({
   pairStatus, pairData, showPairDetails, index,
-}) => (
+}: PairProps) => (
   <button
     className="pair"
     onClick={() => {
@@ -27,17 +36,17 @@ const Pair = ({
   </button>
 );
 
-Pair.propTypes = {
-  pairData: PropTypes.shape({
-    pair: PropTypes.string,
-    buy_price: PropTypes.string,
-  }).isRequired,
-  pairStatus: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.number,
-  ]).isRequired,
-  index: PropTypes.number.isRequired,
-  showPairDetails: PropTypes.func.isRequired,
-};
+// Pair.propTypes = {
+//   pairData: PropTypes.shape({
+//     pair: PropTypes.string,
+//     buy_price: PropTypes.string,
+//   }).isRequired,
+//   pairStatus: PropTypes.oneOfType([
+//     PropTypes.bool,
+//     PropTypes.number,
+//   ]).isRequired,
+//   index: PropTypes.number.isRequired,
+//   showPairDetails: PropTypes.func.isRequired,
+// };
 
 export default Pair;

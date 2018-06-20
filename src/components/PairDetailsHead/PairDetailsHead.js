@@ -1,11 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import * as React from 'react';
+// import PropTypes from 'prop-types';
 import StatisticIcon from '../StaticsticIcon/StatisticIcon';
 import './PairDetailsHead.css';
 
+type PairDetailsHeadProps = {
+  pair: string,
+  pairStatus: bool,
+  buyPrice: string,
+  hidePairDetails: Function
+}
+
 const PairDetailsHead = ({
   pair, pairStatus, buyPrice, hidePairDetails,
-}) => (
+}: PairDetailsHeadProps ) => (
   <div className="popup_head">
     <h2>{pair}</h2>
     <div className="popup_buy_price">
@@ -22,14 +31,14 @@ const PairDetailsHead = ({
   </div>
 );
 
-PairDetailsHead.propTypes = {
-  pair: PropTypes.string.isRequired,
-  pairStatus: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.number,
-  ]).isRequired,
-  buyPrice: PropTypes.string.isRequired,
-  hidePairDetails: PropTypes.func.isRequired,
-};
+// PairDetailsHead.propTypes = {
+//   pair: PropTypes.string.isRequired,
+//   pairStatus: PropTypes.oneOfType([
+//     PropTypes.bool,
+//     PropTypes.number,
+//   ]).isRequired,
+//   buyPrice: PropTypes.string.isRequired,
+//   hidePairDetails: PropTypes.func.isRequired,
+// };
 
 export default PairDetailsHead;

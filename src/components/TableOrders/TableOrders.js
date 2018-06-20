@@ -1,8 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import * as React from 'react';
+// import PropTypes from 'prop-types';
 import './TableOrders.css';
 
-const TableOrders = ({ title, orders }) => (
+type TableOrdersProps = {
+  title: string,
+  orders: Array<Array>
+}
+
+const TableOrders = ({ title, orders }: TableOrdersProps) => (
   <div className="table_container">
     <h3 className="table_caption">{title}</h3>
     <table cellSpacing="5" className="table_orders">
@@ -27,9 +34,9 @@ const TableOrders = ({ title, orders }) => (
   </div>
 );
 
-TableOrders.propTypes = {
-  orders: PropTypes.arrayOf(PropTypes.array).isRequired,
-  title: PropTypes.string.isRequired,
-};
+// TableOrders.propTypes = {
+//   orders: PropTypes.arrayOf(PropTypes.array).isRequired,
+//   title: PropTypes.string.isRequired,
+// };
 
 export default TableOrders;

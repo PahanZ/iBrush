@@ -1,10 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import * as React from 'react';
+// import PropTypes from 'prop-types';
 import './PairDetailsContent.css';
+
+type PairDetailsContentProps = {
+  vol: string,
+  avg: string,
+  volCurr: string,
+  high: string,
+  low: string
+}
 
 const PairDetailsContent = ({
   vol, volCurr, avg, high, low,
-}) => (
+}: PairDetailsContentProps ) => (
   <div className="statistic_pair">
     <h4>Статиcтика за 24 часа</h4>
     <div className="transactions">
@@ -19,12 +29,12 @@ const PairDetailsContent = ({
   </div>
 );
 
-PairDetailsContent.propTypes = {
-  vol: PropTypes.string.isRequired,
-  avg: PropTypes.string.isRequired,
-  volCurr: PropTypes.string.isRequired,
-  high: PropTypes.string.isRequired,
-  low: PropTypes.string.isRequired,
-};
+// PairDetailsContent.propTypes = {
+//   vol: PropTypes.string.isRequired,
+//   avg: PropTypes.string.isRequired,
+//   volCurr: PropTypes.string.isRequired,
+//   high: PropTypes.string.isRequired,
+//   low: PropTypes.string.isRequired,
+// };
 
 export default PairDetailsContent;

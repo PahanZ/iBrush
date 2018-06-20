@@ -1,9 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import * as React from 'react';
+// import PropTypes from 'prop-types';
 import Pair from '../Pair/Pair';
 import './PairList.css';
 
-const PairsList = ({ pairs, statistics, showPairDetails }) => (
+type PairsListProps = {
+  pairs: Array<Object>,
+  statistics: Array<bool>,
+  showPairDetails: Function
+}
+
+const PairsList = ({ pairs, statistics, showPairDetails }: PairsListProps) => (
   <main className="content">
     <h3 className="subtitle">Валютные пары</h3>
     <section className={`container ${pairs.length === 0
@@ -24,14 +32,14 @@ const PairsList = ({ pairs, statistics, showPairDetails }) => (
   </main>
 );
 
-PairsList.propTypes = {
-  pairs: PropTypes.arrayOf(PropTypes.object).isRequired,
-  statistics: PropTypes.arrayOf(PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.number,
-  ])).isRequired,
-  showPairDetails: PropTypes.func.isRequired,
-};
+// PairsList.propTypes = {
+//   pairs: PropTypes.arrayOf(PropTypes.object).isRequired,
+//   statistics: PropTypes.arrayOf(PropTypes.oneOfType([
+//     PropTypes.bool,
+//     PropTypes.number,
+//   ])).isRequired,
+//   showPairDetails: PropTypes.func.isRequired,
+// };
 
 export default PairsList;
 

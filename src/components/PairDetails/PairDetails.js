@@ -1,11 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import * as React from 'react';
+// import PropTypes from 'prop-types';
 import PairDetailsHead from '../PairDetailsHead/PairDetailsHead';
 import PairDetailsContent from '../PairDetailsContent/PairDetailsContent';
 import Orders from '../Orders/Orders';
 import './PairDetails.css';
 
-const PairDetails = ({ pairDetailsData, hidePairDetails }) => {
+type PairDetailsProps = {
+  pairDetailsData: Object,
+  hidePairDetails: Function
+}
+
+const PairDetails = ({ pairDetailsData, hidePairDetails }: PairDetailsProps) => {
   const {
     avg, buy_price: buyPrice, high, low, pair, vol_curr: volCurr, vol,
   } = pairDetailsData.pairData;
@@ -35,18 +42,18 @@ const PairDetails = ({ pairDetailsData, hidePairDetails }) => {
   );
 };
 
-PairDetails.propTypes = {
-  pairDetailsData: PropTypes.shape({
-    pairStatus: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.number,
-    ]).isRequired,
-    isOpen: PropTypes.bool,
-    pairData: PropTypes.object,
-    sale: PropTypes.arrayOf(PropTypes.array).isRequired,
-    buy: PropTypes.arrayOf(PropTypes.array).isRequired,
-  }).isRequired,
-  hidePairDetails: PropTypes.func.isRequired,
-};
+// PairDetails.propTypes = {
+  // pairDetailsData: PropTypes.shape({
+  //   pairStatus: PropTypes.oneOfType([
+  //     PropTypes.bool,
+  //     PropTypes.number,
+  //   ]).isRequired,
+  //   isOpen: PropTypes.bool,
+  //   pairData: PropTypes.object,
+  //   sale: PropTypes.arrayOf(PropTypes.array).isRequired,
+  //   buy: PropTypes.arrayOf(PropTypes.array).isRequired,
+  // }).isRequired,
+  // hidePairDetails: PropTypes.func.isRequired,
+// };
 
 export default PairDetails;

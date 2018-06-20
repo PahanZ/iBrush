@@ -1,9 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+//  @flow
+
+import * as React from 'react';
+// import PropTypes from 'prop-types';
 import TableOrders from '../TableOrders/TableOrders';
 import './Orders.css';
 
-const Orders = ({ buy, sale }) => (
+type OrdersProps = {
+  buy: Array<Array>,
+  sale: Array<Array>
+}
+
+const Orders = ({ buy, sale }: OrdersProps) => (
   <section className="orders">
     <TableOrders
       title="Покупка"
@@ -16,9 +23,9 @@ const Orders = ({ buy, sale }) => (
   </section>
 );
 
-Orders.propTypes = {
-  buy: PropTypes.arrayOf(PropTypes.array).isRequired,
-  sale: PropTypes.arrayOf(PropTypes.array).isRequired,
-};
+// Orders.propTypes = {
+//   buy: PropTypes.arrayOf(PropTypes.array).isRequired,
+//   sale: PropTypes.arrayOf(PropTypes.array).isRequired,
+// };
 
 export default Orders;

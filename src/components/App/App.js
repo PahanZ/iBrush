@@ -46,7 +46,7 @@ class App extends React.Component<null, AppState> {
         console.log(error);
       });
   }
-  getTickers() {
+  getTickers(): Object {
     return getTicker.getTicker()
       .then((res) => {
         this.setState({
@@ -55,7 +55,7 @@ class App extends React.Component<null, AppState> {
         });
       });
   }
-  showPairDetails(index: number) {
+  showPairDetails = (index: number) => {
     this.setState({
       preloaderIsActive: true,
     });
@@ -81,7 +81,7 @@ class App extends React.Component<null, AppState> {
         console.log(error);
       });
   }
-  hidePairDetails() {
+  hidePairDetails = () => {
     this.setState({
       pairDetailsData: {
         isOpen: false,
@@ -102,11 +102,11 @@ class App extends React.Component<null, AppState> {
           <PairsList
             pairs={this.state.pairs}
             statistics={this.state.statistics}
-            showPairDetails={this.showPairDetails.bind(this)}
+            showPairDetails={this.showPairDetails}
           />
           <PairDetails
             pairDetailsData={this.state.pairDetailsData}
-            hidePairDetails={this.hidePairDetails.bind(this)}
+            hidePairDetails={this.hidePairDetails}
           />
         </div>
       </React.Fragment>
