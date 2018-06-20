@@ -1,6 +1,4 @@
-// @flow
-
-import * as React from 'react';
+import React, { Component, Fragment } from 'react';
 import Header from '../Header/Header';
 import PairsList from '../PairsList/PairsList';
 import PairDetails from '../PairDetails/PairDetails';
@@ -9,36 +7,24 @@ import getOrderBook from '../../API/orderBook';
 import Preloader from '../Preloader/Preloader';
 import './App.css';
 
-type AppState = {
-  pairs: Array<{
-    avg: number
-  }>,
-  preloaderIsActive: bool,
-  statistics: Array<bool>,
-  pairDetailsData: {
-    pairData: {
-      pair: string
-    },
-    isOpen: bool,
-    pairStatus: bool | number,
-    sale: Array<number>,
-    buy: Array<number>,
-  },
-}
-
-class App extends React.Component<null, AppState> {
-  state = {
-    pairs: [],
-    statistics: [],
-    pairDetailsData: {
-      pairData: {},
-      isOpen: false,
-      pairStatus: 0,
-      sale: [],
-      buy: [],
-    },
-    preloaderIsActive: true,
-  };
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pairs: [],
+      statistics: [],
+      pairDetailsData: {
+        pairData: {},
+        isOpen: false,
+        pairStatus: 0,
+        sale: [],
+        buy: [],
+      },
+      preloaderIsActive: true,
+    };
+    this.showPairDetails = this.showPairDetails.bind(this);
+    this.hidePairDetails = this.hidePairDetails.bind(this);
+  }
   componentDidMount() {
     this.getTickers()
       .then(() => {
@@ -59,7 +45,7 @@ class App extends React.Component<null, AppState> {
         });
       });
   }
-  showPairDetails(index: number) {
+  showPairDetails(index) {
     this.setState({
       preloaderIsActive: true,
     });
@@ -99,21 +85,21 @@ class App extends React.Component<null, AppState> {
   render() {
     const { isOpen } = this.state.pairDetailsData;
     return (
-      <React.Fragment>
+      <Fragment>
         <Preloader preloaderIsActive={this.state.preloaderIsActive} />
         <div className={`App ${isOpen ? 'popup_open' : 'popup_hide'}`}>
           <Header />
           <PairsList
             pairs={this.state.pairs}
             statistics={this.state.statistics}
-            showPairDetails={this.showPairDetails.bind(this)}
+            showPairDetails={this.showPairDetails}
           />
           <PairDetails
             pairDetailsData={this.state.pairDetailsData}
-            hidePairDetails={this.hidePairDetails.bind(this)}
+            hidePairDetails={this.hidePairDetails}
           />
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
