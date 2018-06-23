@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-// import PropTypes from 'prop-types';
 import './Preloader.css';
 
 type PreloaderProps = {
@@ -16,9 +15,5 @@ const Preloader = ({ preloaderIsActive }: PreloaderProps) => (
     <div className="dash cuatro" />
   </div>
 );
-
-// Preloader.propTypes = {
-//   preloaderIsActive: PropTypes.bool.isRequired,
-// };
 
 export default Preloader;

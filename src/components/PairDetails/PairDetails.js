@@ -1,24 +1,46 @@
 // @flow
 
 import * as React from 'react';
-// import PropTypes from 'prop-types';
 import PairDetailsHead from '../PairDetailsHead/PairDetailsHead';
 import PairDetailsContent from '../PairDetailsContent/PairDetailsContent';
 import Orders from '../Orders/Orders';
 import './PairDetails.css';
 
-type PairDetailsProps = {
-  pairDetailsData: Object,
+type PairDetailsProps<PairDataTypes> = {
+  pairDetailsData: PairDataTypes,
   hidePairDetails: Function
 }
 
-const PairDetails = ({ pairDetailsData, hidePairDetails }: PairDetailsProps) => {
+type PairDataTypes<pairDetailsDataTypes> = {
+  pairData: pairDetailsDataTypes,
+  isOpen: bool,
+  pairStatus: bool,
+  sale: Array<[string, string, string]>,
+  buy: Array<[string, string, string]>
+}
+
+type pairDetailsDataTypes = {
+  avg: string,
+  buy_price: string,
+  high: string,
+  last_trade: string,
+  low: string,
+  pair: string,
+  sell_price: string,
+  updated: number,
+  vol: string,
+  vol_curr: string
+}
+
+const PairDetails = 
+({ pairDetailsData, hidePairDetails }: PairDetailsProps<PairDataTypes<pairDetailsDataTypes>>) => {
   const {
     avg, buy_price: buyPrice, high, low, pair, vol_curr: volCurr, vol,
   } = pairDetailsData.pairData;
   const {
     isOpen, pairStatus, sale, buy,
   } = pairDetailsData;
+  console.log(pairStatus)
   return (
     <section className={`popup ${isOpen ? 'show' : 'hide'}`}>
       <PairDetailsHead
@@ -41,19 +63,5 @@ const PairDetails = ({ pairDetailsData, hidePairDetails }: PairDetailsProps) => 
     </section>
   );
 };
-
-// PairDetails.propTypes = {
-  // pairDetailsData: PropTypes.shape({
-  //   pairStatus: PropTypes.oneOfType([
-  //     PropTypes.bool,
-  //     PropTypes.number,
-  //   ]).isRequired,
-  //   isOpen: PropTypes.bool,
-  //   pairData: PropTypes.object,
-  //   sale: PropTypes.arrayOf(PropTypes.array).isRequired,
-  //   buy: PropTypes.arrayOf(PropTypes.array).isRequired,
-  // }).isRequired,
-  // hidePairDetails: PropTypes.func.isRequired,
-// };
 
 export default PairDetails;

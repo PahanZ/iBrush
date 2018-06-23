@@ -1,7 +1,6 @@
 //  @flow
 
 import * as React from 'react';
-// import PropTypes from 'prop-types';
 import './StatisticIcon.css';
 
 type StatisticIconProps = {
@@ -18,9 +17,5 @@ const StatisticIcon = ({ pairStatus }: StatisticIconProps ) => (
     alt={pairStatus ? 'up' : 'down'}
   />
 );
-
-// StatisticIcon.propTypes = {
-//   pairStatus: PropTypes.bool.isRequired,
-// };
 
 export default StatisticIcon;

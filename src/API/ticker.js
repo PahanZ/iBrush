@@ -28,7 +28,6 @@ const getTicker = (): returnTypes<typesArr> => (
       const arr = Object.keys(res).map((el: string) => Object.assign({}, res[el], { pair: el }));
       const storage = getTicketsData();
       let statistics = [];
-      console.log(arr)
       if (storage === null) {
         setTicketsData(arr);
         statistics.length = arr.length;

@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-// import PropTypes from 'prop-types';
 import StatisticIcon from '../StaticsticIcon/StatisticIcon';
 import './PairDetailsHead.css';
 
@@ -30,15 +29,5 @@ const PairDetailsHead = ({
     </button>
   </div>
 );
-
-// PairDetailsHead.propTypes = {
-//   pair: PropTypes.string.isRequired,
-//   pairStatus: PropTypes.oneOfType([
-//     PropTypes.bool,
-//     PropTypes.number,
-//   ]).isRequired,
-//   buyPrice: PropTypes.string.isRequired,
-//   hidePairDetails: PropTypes.func.isRequired,
-// };
 
 export default PairDetailsHead;

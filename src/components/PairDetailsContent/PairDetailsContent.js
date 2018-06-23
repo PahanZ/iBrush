@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-// import PropTypes from 'prop-types';
 import './PairDetailsContent.css';
 
 type PairDetailsContentProps = {
@@ -28,13 +27,5 @@ const PairDetailsContent = ({
     </div>
   </div>
 );
-
-// PairDetailsContent.propTypes = {
-//   vol: PropTypes.string.isRequired,
-//   avg: PropTypes.string.isRequired,
-//   volCurr: PropTypes.string.isRequired,
-//   high: PropTypes.string.isRequired,
-//   low: PropTypes.string.isRequired,
-// };
 
 export default PairDetailsContent;
