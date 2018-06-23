@@ -1,14 +1,23 @@
+// @flow
+
 import axios from 'axios';
 
-const getOrderBook = pair => (
+type returnTypes = {
+  ask: Array<[string, string, string]>,
+  bid: Array<[string, string, string]>,
+}
+
+const getOrderBook = (pair: string):returnTypes => (
   axios.get(`https://api.exmo.com/v1/order_book/?pair=${pair}`)
-    .then(res => res.data[pair])
-    .then((res) => {
+    .then((res: Object) => res.data[pair])
+    .then((res: Object) => {
       const response = Object.assign({}, res);
       response.ask.length = 50;
       response.bid.length = 50;
-      return { ask: response.ask, bid: response.bid };
+      const ask: [string, string, string] = response.ask;
+      const bid: [string, string, string] = response.bid;
+      return { ask, bid };
     })
 );
 
-export default { getOrderBook };
+export { getOrderBook };

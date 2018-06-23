@@ -1,12 +1,11 @@
 // @flow
 
 import * as React from 'react';
-// import PropTypes from 'prop-types';
 import './TableOrders.css';
 
 type TableOrdersProps = {
   title: string,
-  orders: Array<Array>
+  orders: Array<[string, string, string]>
 }
 
 const TableOrders = ({ title, orders }: TableOrdersProps) => (
@@ -33,10 +32,5 @@ const TableOrders = ({ title, orders }: TableOrdersProps) => (
     </table>
   </div>
 );
-
-// TableOrders.propTypes = {
-//   orders: PropTypes.arrayOf(PropTypes.array).isRequired,
-//   title: PropTypes.string.isRequired,
-// };
 
 export default TableOrders;

@@ -4,13 +4,13 @@ import * as React from 'react';
 import Header from '../Header/Header';
 import PairsList from '../PairsList/PairsList';
 import PairDetails from '../PairDetails/PairDetails';
-import getTicker from '../../API/ticker';
-import getOrderBook from '../../API/orderBook';
+import * as ticker from '../../API/ticker';
+import * as orderBook from '../../API/orderBook';
 import Preloader from '../Preloader/Preloader';
 import './App.css';
 
-type AppState = {
-  pairs: Array<Object>,
+type AppState<typesPair> = {
+  pairs: Array<typesPair>,
   preloaderIsActive: bool,
   statistics: Array<bool>,
   pairDetailsData: {
@@ -22,7 +22,20 @@ type AppState = {
   },
 }
 
-class App extends React.Component<null, AppState> {
+type typesPair = {
+  avg: string,
+  buy_price: string,
+  high: string,
+  last_trade: string,
+  low: string,
+  pair: string,
+  sell_price: string,
+  updated: number,
+  vol: string,
+  vol_curr: string
+}
+
+class App extends React.Component<null, AppState<typesPair> > {
   state = {
     pairs: [],
     statistics: [],
@@ -47,7 +60,7 @@ class App extends React.Component<null, AppState> {
       });
   }
   getTickers(): Object {
-    return getTicker.getTicker()
+    return ticker.getTicker()
       .then((res) => {
         this.setState({
           pairs: res.arr,
@@ -63,7 +76,8 @@ class App extends React.Component<null, AppState> {
       .then(() => {
         const pairData = this.state.pairs[index];
         const status = this.state.statistics[index];
-        getOrderBook.getOrderBook(pairData.pair)
+        const pair = pairData.pair;
+        orderBook.getOrderBook(pair)
           .then((res) => {
             this.setState({
               pairDetailsData: {

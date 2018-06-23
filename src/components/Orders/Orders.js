@@ -1,13 +1,12 @@
 //  @flow
 
 import * as React from 'react';
-// import PropTypes from 'prop-types';
 import TableOrders from '../TableOrders/TableOrders';
 import './Orders.css';
 
 type OrdersProps = {
-  buy: Array<Array>,
-  sale: Array<Array>
+  buy: Array<[string, string, string]>,
+  sale: Array<[string, string, string]>
 }
 
 const Orders = ({ buy, sale }: OrdersProps) => (
@@ -22,10 +21,5 @@ const Orders = ({ buy, sale }: OrdersProps) => (
     />
   </section>
 );
-
-// Orders.propTypes = {
-//   buy: PropTypes.arrayOf(PropTypes.array).isRequired,
-//   sale: PropTypes.arrayOf(PropTypes.array).isRequired,
-// };
 
 export default Orders;
