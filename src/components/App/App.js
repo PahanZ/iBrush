@@ -12,13 +12,13 @@ import './App.css';
 type AppState<typesPair> = {
   pairs: Array<typesPair>,
   preloaderIsActive: bool,
-  statistics: Array<bool>,
+  statistics: Array<number | bool>,
   pairDetailsData: {
     pairData: Object,
     isOpen: bool,
     pairStatus: bool | number,
-    sale: Array<number>,
-    buy: Array<number>,
+    sale: Array<[string, string, string]>,
+    buy: Array<[string, string,string]>,
   },
 }
 
@@ -108,6 +108,7 @@ class App extends React.Component<null, AppState<typesPair> > {
   }
   render() {
     const { isOpen } = this.state.pairDetailsData;
+    console.log(this.state.statistics)
     return (
       <React.Fragment>
         <Preloader preloaderIsActive={this.state.preloaderIsActive} />

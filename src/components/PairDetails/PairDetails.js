@@ -14,7 +14,7 @@ type PairDetailsProps<PairDataTypes> = {
 type PairDataTypes<pairDetailsDataTypes> = {
   pairData: pairDetailsDataTypes,
   isOpen: bool,
-  pairStatus: bool,
+  pairStatus: bool | number,
   sale: Array<[string, string, string]>,
   buy: Array<[string, string, string]>
 }
@@ -40,7 +40,6 @@ const PairDetails =
   const {
     isOpen, pairStatus, sale, buy,
   } = pairDetailsData;
-  console.log(pairStatus)
   return (
     <section className={`popup ${isOpen ? 'show' : 'hide'}`}>
       <PairDetailsHead

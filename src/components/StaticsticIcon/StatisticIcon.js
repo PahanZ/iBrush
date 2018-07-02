@@ -4,7 +4,7 @@ import * as React from 'react';
 import './StatisticIcon.css';
 
 type StatisticIconProps = {
-  pairStatus: bool
+  pairStatus: bool | number
 }
 
 const up = require('../../assets/up.png');

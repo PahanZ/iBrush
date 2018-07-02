@@ -6,9 +6,9 @@ import './PairDetailsHead.css';
 
 type PairDetailsHeadProps = {
   pair: string,
-  pairStatus: bool,
+  pairStatus: bool | number,
   buyPrice: string,
-  hidePairDetails: Function
+  hidePairDetails: SyntheticEvent<>
 }
 
 const PairDetailsHead = ({

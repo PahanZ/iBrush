@@ -7,7 +7,7 @@ type returnTypes = {
   bid: Array<[string, string, string]>,
 }
 
-const getOrderBook = (pair: string):returnTypes => (
+const getOrderBook = (pair: string): Promise<returnTypes> => (
   axios.get(`https://api.exmo.com/v1/order_book/?pair=${pair}`)
     .then((res: Object) => res.data[pair])
     .then((res: Object) => {

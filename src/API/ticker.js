@@ -3,25 +3,25 @@
 import axios from 'axios';
 import { getTicketsData, setTicketsData } from './caching';
 
-type returnTypes<typesArr> = {
-  arr: Array<typesArr>,
+type returnTypes = {
+  arr: Array<Object>,
   statistics: Array<number | bool>
 }
 
-type typesArr = {
-  avg: string,
-  buy_price: string,
-  high: string,
-  last_trade: string,
-  low: string,
-  pair: string,
-  sell_price: string,
-  updated: number,
-  vol: string,
-  vol_curr: string
-}
+// type typesArr = {
+//  avg: string,
+//  buy_price: string,
+//  high: string,
+//  last_trade: string,
+//  low: string,
+//  pair: string,
+//  sell_price: string,
+//  updated: number,
+//  vol: string,
+//  vol_curr: string
+//}
 
-const getTicker = (): returnTypes<typesArr> => (
+const getTicker = (): Promise<returnTypes> => (
   axios.get('https://api.exmo.com/v1/ticker/')
     .then((response: Object) => JSON.parse(response.request.response))
     .then((res: Object) => {
@@ -33,7 +33,7 @@ const getTicker = (): returnTypes<typesArr> => (
         statistics.length = arr.length;
         statistics.fill(0);
       } else {
-        statistics = arr.map((el, i: number) => {
+        statistics = arr.map((el, i) => {
           const buyPrice: number = Number(el.buy_price);
           const storageBuyPrice: number = Number(storage[i].buy_price);
           return buyPrice !== storageBuyPrice ? buyPrice > storageBuyPrice : 0;
